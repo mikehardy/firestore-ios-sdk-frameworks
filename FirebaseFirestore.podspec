@@ -22,20 +22,28 @@ Pod::Spec.new do |s|
 
   skip_leveldb = false
 
+  puts "FIRESTORE current string: "
+  puts current_definition_string
+  
   # FlutterFire
   if current_definition_string.include?('firebase_database')
+    puts "FIRESTORE We hit the FlutterFire database check"
     skip_leveldb = true
   # React native Firebase  
   elsif current_definition_string.include?('RNFBDatabase')
+    puts "FIRESTORE We hit the react native database check"
     skip_leveldb = true
   # Pod spec used directly  
   elsif current_definition_string.include?('FirebaseDatabase')
+    puts "FIRESTORE We hit the direct database check"
     skip_leveldb = true
   # Umbrella pod spec  
   elsif current_definition_string.include?('Firebase/Database')
+    puts "FIRESTORE We hit the umbrella podspec check"
     skip_leveldb = true
   end
 
+  skip_leveldb = false
   if skip_leveldb
     s.exclude_files = 'FirebaseFirestore/leveldb-library.xcframework'
   end
