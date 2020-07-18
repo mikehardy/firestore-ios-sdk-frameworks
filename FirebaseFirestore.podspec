@@ -43,7 +43,6 @@ Pod::Spec.new do |s|
     skip_leveldb = true
   end
 
-  skip_leveldb = false
   if skip_leveldb
     s.exclude_files = 'FirebaseFirestore/leveldb-library.xcframework'
   end
